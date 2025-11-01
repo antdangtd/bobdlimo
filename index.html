@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Executive black car service for North New Jersey business and leisure travelers." />
+  <title>North Jersey Executive Black Car Service | Bob D Limo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="script.js" defer></script>
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav class="nav">
+      <a class="logo" href="#top">Bob D Black Car</a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+      <div class="nav__links" id="nav-menu">
+        <a href="#services">Services</a>
+        <a href="#fleet">Fleet</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <div class="hero__content">
+      <p class="eyebrow">North New Jersey · Newark · Hoboken · Jersey City</p>
+      <h1>Premium Black Car Service for Modern Travelers</h1>
+      <p>Reliable executive transportation powered by real people, elevated by AI scheduling, and optimized for your itinerary.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#contact">Book a Ride</a>
+        <a class="btn btn--secondary" href="#ai">Meet our AI Concierge</a>
+      </div>
+    </div>
+    <div class="hero__metrics">
+      <div>
+        <span class="metric__number">4.9</span>
+        <span class="metric__label">Average Rating</span>
+      </div>
+      <div>
+        <span class="metric__number">24/7</span>
+        <span class="metric__label">Live Dispatch</span>
+      </div>
+      <div>
+        <span class="metric__number">15 min</span>
+        <span class="metric__label">Rapid Response</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="services">
+      <div class="section__header">
+        <h2>Signature Services</h2>
+        <p>Designed for corporate travelers, event planners, and discerning locals who expect punctuality, privacy, and polish.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Airport Transfers</h3>
+          <p>Seamless curbside pickups at Newark (EWR), Teterboro, and all NYC airports with flight tracking and complimentary wait time.</p>
+        </article>
+        <article class="card">
+          <h3>Corporate Travel</h3>
+          <p>Dedicated account management, direct billing, and real-time ride insights for teams on the move.</p>
+        </article>
+        <article class="card">
+          <h3>Event Chauffeur</h3>
+          <p>Concierge-level service for galas, weddings, and VIP experiences with impeccably dressed chauffeurs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="fleet">
+      <div class="section__header">
+        <h2>A Curated Fleet</h2>
+        <p>Late-model executive sedans and SUVs with in-ride Wi-Fi, bottled water, and climate-controlled comfort.</p>
+      </div>
+      <div class="fleet">
+        <div class="fleet__item">
+          <h3>Executive Sedans</h3>
+          <p>Mercedes-Benz E-Class, BMW 5 Series, and Tesla Model S for discreet, efficient travel.</p>
+        </div>
+        <div class="fleet__item">
+          <h3>Luxury SUVs</h3>
+          <p>Cadillac Escalade and Lincoln Navigator for groups, gear, and high-profile arrivals.</p>
+        </div>
+        <div class="fleet__item">
+          <h3>Sprinter Vans</h3>
+          <p>Premium Mercedes Sprinters with captain's chairs, perfect for roadshows or crew shuttles.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="coverage">
+      <div class="section__header">
+        <h2>Hyperlocal Expertise</h2>
+        <p>From Bergen County boardrooms to Hudson River nightlife, we move North Jersey with precision.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h3>Service Area</h3>
+          <ul class="list">
+            <li>Newark · Jersey City · Hoboken</li>
+            <li>Montclair · Short Hills · Morristown</li>
+            <li>NYC transfers &amp; tri-state routes</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why It Matters</h3>
+          <p>Our chauffeurs know the best curb lanes, VIP entrances, and traffic patterns so you always arrive on time.</p>
+        </div>
+        <div>
+          <h3>Corporate Solutions</h3>
+          <p>API-powered booking, rider tracking links, and consolidated invoicing keep your travel program running smoothly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--accent" id="ai">
+      <div class="section__header">
+        <h2>AI Concierge, Human Assurance</h2>
+        <p>Start the conversation with our AI-powered ride planner. A live dispatcher steps in anytime you need a human touch.</p>
+      </div>
+      <div class="ai">
+        <div class="ai__panel">
+          <h3>Plan a Ride</h3>
+          <form class="ai__form" aria-label="AI Ride Planner">
+            <label>
+              Pickup Location
+              <input type="text" name="pickup" placeholder="E.g. Newark Liberty International" required />
+            </label>
+            <label>
+              Dropoff Location
+              <input type="text" name="dropoff" placeholder="E.g. Hudson Yards" required />
+            </label>
+            <label>
+              Date &amp; Time
+              <input type="datetime-local" name="datetime" required />
+            </label>
+            <label>
+              Passenger Count
+              <input type="number" name="passengers" min="1" max="10" value="1" />
+            </label>
+            <button type="submit" class="btn btn--primary">Chat with Dispatch AI</button>
+          </form>
+          <p class="ai__note">Our AI drafts the perfect itinerary and connects you with a specialist to finalize within minutes.</p>
+        </div>
+        <div class="ai__chat" role="log" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="section__header">
+        <h2>Trusted by Leaders &amp; Luminaries</h2>
+        <p>We drive executives from Wall Street to the Prudential Center, delivering elite service every mile.</p>
+      </div>
+      <div class="testimonials">
+        <figure class="testimonial">
+          <blockquote>
+            “Bob D’s team keeps our roadshow on schedule even when flights change at the last minute. They’re indispensable.”
+          </blockquote>
+          <figcaption>– Taylor M., Investment VP</figcaption>
+        </figure>
+        <figure class="testimonial">
+          <blockquote>
+            “Their chauffeurs know every venue in Jersey City. Our VIP speakers felt like celebrities.”
+          </blockquote>
+          <figcaption>– Jasmine K., Event Producer</figcaption>
+        </figure>
+        <figure class="testimonial">
+          <blockquote>
+            “Booking through the AI concierge is shockingly easy. We confirm rides in under five minutes.”
+          </blockquote>
+          <figcaption>– Chris D., Operations Director</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="contact">
+      <div class="section__header">
+        <h2>Request Your Next Ride</h2>
+        <p>Call, text, or message the AI concierge for immediate confirmations. We monitor flights and traffic 24/7.</p>
+      </div>
+      <div class="contact">
+        <div>
+          <h3>Talk to Dispatch</h3>
+          <p class="contact__phone"><a href="tel:19731234567">(973) 123-4567</a></p>
+          <p><a href="mailto:rides@bobdblackcar.com">rides@bobdblackcar.com</a></p>
+        </div>
+        <div>
+          <h3>Business Hours</h3>
+          <p>Always on call. Office team available 6am – 10pm EST daily.</p>
+        </div>
+        <div>
+          <h3>Follow the Journey</h3>
+          <p><a href="https://instagram.com">Instagram</a> · <a href="https://linkedin.com">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Bob D Black Car · USDOT #1234567 · Insured &amp; licensed in New Jersey</p>
+    <a class="back-to-top" href="#top">Back to top</a>
+  </footer>
+</body>
+</html>
