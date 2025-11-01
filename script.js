@@ -37,10 +37,10 @@ const createMessage = (text, type) => {
 };
 
 const aiResponses = [
-  'Got it! I\'m checking availability for your route right now.',
-  'A dispatcher is reviewing your itinerary – expect a confirmation within minutes.',
-  'Would you like bottled water, charging cables, or a preferred chauffeur? Just let me know.',
-  'Flights are monitored automatically. We adjust pickup times for delays at no cost.'
+  'Thanks for choosing Sparta Limousine! I\'m checking availability for your route right now.',
+  'Our dispatch team is reviewing your itinerary—expect a confirmation shortly.',
+  'Let me know if you prefer a specific vehicle, chauffeur, or amenities and we\'ll note it on the reservation.',
+  'Flights are monitored automatically. We adjust pickup times for delays at no cost to you.'
 ];
 
 if (aiForm && aiChat) {
