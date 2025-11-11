@@ -1,209 +1,280 @@
-# Bob's Limousine Service Website
+# Sparta Limousine Website
 
-A modern, luxury black car service website built with Next.js 14, featuring online booking, AI chatbot, and admin dashboard.
+Modern luxury black car service website built with Next.js 15, featuring online booking, email notifications, and spam protection.
 
-## 🚗 Features
+## ✨ Features
 
-- **Modern, Responsive Design**: Beautiful UI with classic luxury car service aesthetic
-- **Online Booking System**: Real-time reservation form with validation
-- **AI Chatbot**: Interactive chatbot for customer inquiries (ready for OpenAI/Claude API integration)
-- **Admin Dashboard**: View and manage all bookings
-- **Fleet Showcase**: Highlight your Ford Flex and Lincoln MKT vehicles
-- **Service Pages**: Detailed information about airport transfers, corporate travel, events, and tours
-- **Mobile-First**: Fully responsive across all devices
+- **Online Booking System** - 24/7 reservation form with real-time validation
+- **Email Notifications** - Automated confirmations via Brevo (business & customer)
+- **Spam Protection** - Google reCAPTCHA v3 (invisible, bot detection)
+- **AI Chatbot** - Intelligent assistant for instant customer support
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Premium Fleet Showcase** - Cadillac XT6, Ford Flex, Lincoln MKT
+- **SEO Optimized** - Metadata, structured data, and performance
+- **Admin Dashboard** - View all bookings (requires authentication for production)
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript 5.6
+- **Styling**: Tailwind CSS 3.4
+- **Animations**: Framer Motion 11
+- **Email**: Brevo (formerly Sendinblue)
+- **Security**: reCAPTCHA v3
 - **Icons**: Lucide React
-- **Data Storage**: JSON file-based (can be upgraded to PostgreSQL/MongoDB)
 
 ## 📦 Installation
 
-1. **Clone the repository**:
+### Prerequisites
+
+- Node.js 18+ and npm
+- Brevo account (free tier available)
+- Google reCAPTCHA v3 account
+
+### Setup
+
+1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone <repository-url>
    cd bobdlimo
    ```
 
-2. **Install dependencies**:
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Run development server**:
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Edit `.env.local` with your credentials:
+   - `BREVO_API_KEY` - From https://app.brevo.com/settings/keys/api
+   - `NOTIFICATION_EMAIL` - Business email for booking notifications
+   - `FROM_EMAIL` - Verified sender email in Brevo
+   - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` - From https://www.google.com/recaptcha/admin
+   - `RECAPTCHA_SECRET_KEY` - Secret key from reCAPTCHA
+
+4. **Start development server**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   Open http://localhost:3000
+
+### Development Commands
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm start            # Run production server
+npm run lint         # Run ESLint
+```
+
+## 📁 Project Structure
+
+```
+/app
+  /admin           - Admin dashboard (view bookings)
+  /api
+    /bookings      - Booking API (GET, POST with validation)
+    /chat          - Chatbot API endpoint
+  layout.tsx       - Root layout (metadata, fonts, favicon)
+  page.tsx         - Home page
+  globals.css      - Global styles
+
+/components
+  Hero.tsx         - Hero section with navigation
+  Fleet.tsx        - Vehicle showcase
+  Services.tsx     - Service offerings
+  BookingForm.tsx  - Reservation form with reCAPTCHA
+  Chatbot.tsx      - AI assistant widget
+  Footer.tsx       - Footer with contact info
+
+/public/images     - Logos and vehicle photos
+/data             - Bookings storage (gitignored)
+```
+
+## 🎯 Key Features
+
+### Booking System
+
+Real-time booking form with:
+- Date/time validation
+- Vehicle selection (3 premium vehicles)
+- Special requests
+- reCAPTCHA v3 spam protection
+- Dual email confirmations
+
+**API Endpoint**: `POST /api/bookings`
+- Validates reCAPTCHA token (score >= 0.5)
+- Validates all required fields
+- Sends emails via Brevo
+- Stores in JSON file
+- Returns success/error response
+
+### Email Notifications (Brevo)
+
+Two emails sent per booking:
+
+1. **Business Notification** → `NOTIFICATION_EMAIL`
+   - Customer contact details
+   - Complete trip information
+   - Special requests
+   - Booking ID and timestamp
+
+2. **Customer Confirmation** → Customer's email
+   - Trip summary with correct date/time
+   - Booking reference
+   - Contact information
+   - Professional branding
+
+### Security Features
+
+- **reCAPTCHA v3**: Invisible bot protection
+- **Environment Variables**: All API keys secured
+- **Input Validation**: Server-side validation
+- **Error Handling**: No stack traces exposed
+- **Data Privacy**: Customer data gitignored
 
 ## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
+### Vercel (Recommended)
 
-1. Push your code to GitHub
-2. Visit [vercel.com](https://vercel.com)
-3. Import your repository
-4. Deploy with one click!
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for production"
+   git push origin main
+   ```
 
-### Build for Production
+2. **Deploy to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Add environment variables (from `.env.local`)
+   - Deploy!
 
-```bash
-npm run build
-npm start
+3. **Configure Domain**
+   - Add your domain in Vercel settings
+   - Update reCAPTCHA domain whitelist
+
+### Environment Variables for Production
+
+Add these in your hosting platform:
+
+```env
+BREVO_API_KEY=xkeysib-...
+NOTIFICATION_EMAIL=spartalimonj@gmail.com
+FROM_EMAIL=dangtd@gmail.com
+FROM_NAME=Sparta Limousine
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6Ld...
+RECAPTCHA_SECRET_KEY=6Ld...
 ```
 
-## 📱 Pages
+### Pre-Deployment Checklist
 
-- **Home** (`/`): Main landing page with hero, fleet, services, booking form, and chatbot
-- **Admin Dashboard** (`/admin`): View and manage all bookings
+- [ ] All environment variables set
+- [ ] Brevo sender email verified
+- [ ] reCAPTCHA domain configured
+- [ ] Build succeeds (`npm run build`)
+- [ ] Admin dashboard protected
+- [ ] Test booking flow
+- [ ] Test email delivery
 
-## 🔧 Configuration
+## ⚙️ Configuration
 
 ### Update Contact Information
 
-Edit the following files to update your contact info:
-- `/components/Hero.tsx` - Phone number in navigation
-- `/components/Footer.tsx` - All contact details
-- `/components/BookingForm.tsx` - Phone number in call-to-action
+- **Phone**: Update in `Hero.tsx`, `Footer.tsx`, `BookingForm.tsx`
+- **Email**: Update in `.env.local` and `Footer.tsx`
+- **Address**: Update in `Footer.tsx`
 
-### Update Vehicle Information
+### Update Fleet Information
 
-Edit `/components/Fleet.tsx` to update:
-- Vehicle photos (replace Unsplash URLs with your own)
-- Vehicle specifications
+Edit `Fleet.tsx` to modify:
+- Vehicle photos (in `/public/images/fleet/`)
+- Specifications
 - Features and amenities
 
-### Customize Colors
+### Brevo Configuration
 
-Edit `/tailwind.config.ts` to change the color scheme:
-```typescript
-luxury: {
-  gold: "#D4AF37",        // Primary gold color
-  darkGold: "#B8941F",    // Hover state
-  cream: "#F5F5DC",       // Accent
-  charcoal: "#1C1C1E",    // Dark background
-  slate: "#2C2C2E",       // Secondary background
-}
-```
+**Domain Verification** (Recommended):
+1. Go to https://app.brevo.com/settings/senders
+2. Add and verify your domain
+3. Update `FROM_EMAIL` in `.env.local`
+4. Improves deliverability and branding
 
-## 🤖 AI Chatbot Integration
+### reCAPTCHA Configuration
 
-The chatbot currently uses keyword-based responses. To integrate a real AI:
+**Adjust Score Threshold**:
+- Location: `app/api/bookings/route.ts:167`
+- Default: 0.5 (balanced)
+- Lower = more permissive
+- Higher = stricter
 
-### Option 1: OpenAI
+## 🔒 Security Recommendations
 
-1. Get API key from [platform.openai.com](https://platform.openai.com)
-2. Add to `.env.local`:
-   ```
-   OPENAI_API_KEY=your_key_here
-   ```
-3. Update `/app/api/chat/route.ts` with OpenAI API calls
+### Before Production
 
-### Option 2: Claude (Anthropic)
+1. **Protect Admin Dashboard**
+   - Add NextAuth.js authentication
+   - Or use Vercel password protection
+   - Current route: `/admin` (unprotected)
 
-1. Get API key from [console.anthropic.com](https://console.anthropic.com)
-2. Add to `.env.local`:
-   ```
-   ANTHROPIC_API_KEY=your_key_here
-   ```
-3. Update `/app/api/chat/route.ts` with Claude API calls
+2. **Monitor Email Delivery**
+   - Check Brevo dashboard regularly
+   - Set up bounce/complaint alerts
+   - Monitor monthly quota
 
-## 📧 Email Notifications
+3. **Review reCAPTCHA Scores**
+   - Check Google reCAPTCHA console
+   - Adjust threshold if needed
+   - Monitor bot detection rates
 
-To add email confirmations when bookings are made:
+## 🐛 Troubleshooting
 
-### Using Resend (Recommended)
+### Emails Not Sending
 
-1. Sign up at [resend.com](https://resend.com)
-2. Install package:
-   ```bash
-   npm install resend
-   ```
-3. Add to `.env.local`:
-   ```
-   RESEND_API_KEY=your_key_here
-   ```
-4. Update `/app/api/bookings/route.ts` to send emails
+1. Verify `BREVO_API_KEY` is correct
+2. Check `FROM_EMAIL` is verified in Brevo
+3. Review server logs for errors
+4. Ensure Brevo account is active
 
-## 📊 Database Upgrade
+### reCAPTCHA Failing
 
-Currently using JSON file storage. To upgrade to a real database:
+1. Verify domain is registered in Google console
+2. Check both site key and secret key
+3. Ensure keys match environment (localhost vs production)
 
-### Option 1: PostgreSQL with Prisma
+### Build Errors
 
 ```bash
-npm install prisma @prisma/client
-npx prisma init
+npm run build
 ```
+Check output for TypeScript or ESLint errors
 
-### Option 2: MongoDB
+## 📊 Admin Dashboard
 
-```bash
-npm install mongodb
-```
+Access at `/admin` to view all bookings.
 
-Update `/app/api/bookings/route.ts` with your database logic.
+**⚠️ Important**: Add authentication before production!
 
-## 📝 Environment Variables
+Recommended solutions:
+- NextAuth.js with password
+- Vercel password protection
+- Custom middleware with JWT
 
-Create a `.env.local` file in the root directory:
+## 📱 Support
 
-```env
-# Optional: Add when ready
-OPENAI_API_KEY=your_openai_key
-ANTHROPIC_API_KEY=your_claude_key
-RESEND_API_KEY=your_resend_key
-DATABASE_URL=your_database_url
-```
+- Architecture details: [CLAUDE.md](./CLAUDE.md)
+- Contact: spartalimonj@gmail.com
+- Phone: 1-800-729-LIMO
 
-## 🎨 Customization Tips
+## 📜 License
 
-1. **Update Images**: Replace all Unsplash URLs with your own professional photos
-2. **Add Logo**: Create a logo component in `/components/Logo.tsx`
-3. **Google Analytics**: Add tracking in `/app/layout.tsx`
-4. **SEO**: Update metadata in `/app/layout.tsx` and add `sitemap.xml`
-5. **Add Pricing**: Create `/app/pricing/page.tsx` with your rates
-6. **Blog/News**: Create `/app/blog` for updates and promotions
-
-## 🔐 Security
-
-Before deploying to production:
-
-1. Add authentication to `/admin` page
-2. Set up rate limiting for API routes
-3. Validate and sanitize all form inputs
-4. Add CAPTCHA to prevent spam bookings
-5. Use environment variables for sensitive data
-
-## 📄 License
-
-This project is private and proprietary to Bob's Limousine Service.
-
-## 💡 Support
-
-For questions or issues, contact your developer or:
-- Check Next.js docs: [nextjs.org/docs](https://nextjs.org/docs)
-- Tailwind CSS docs: [tailwindcss.com/docs](https://tailwindcss.com/docs)
-- Framer Motion docs: [framer.com/motion](https://www.framer.com/motion)
-
-## 🚀 Future Enhancements
-
-- [ ] Payment integration (Stripe/Square)
-- [ ] Customer accounts and booking history
-- [ ] SMS notifications (Twilio)
-- [ ] Real-time vehicle tracking
-- [ ] Multi-language support
-- [ ] Calendar integration (Google Calendar, Calendly)
-- [ ] Review/testimonial system
-- [ ] Fleet management system
-- [ ] Driver mobile app
+Proprietary - Sparta Limousine © 2025
 
 ---
 
-Built with ❤️ for Bob's Limousine Service
+Built for Sparta Limousine - Serving North Jersey for over 50 years

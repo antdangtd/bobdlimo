@@ -20,9 +20,9 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-right bg-no-repeat"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2940&auto=format&fit=crop')",
+            backgroundImage: "url('/images/fleet/xt6_hero.png')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/70 to-black/60" />
@@ -36,25 +36,41 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-2"
           >
-            <h1 className="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-playfair)]">
-              Bob&apos;s Limousine
+            <img
+              src="/images/sparta-logo.png"
+              alt="Sparta Limousine"
+              className="h-20 lg:h-28 w-auto"
+              onError={(e) => {
+                // Fallback to text if image doesn't load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const textFallback = document.getElementById('logo-text-fallback');
+                if (textFallback) textFallback.style.display = 'block';
+              }}
+            />
+            <h1
+              id="logo-text-fallback"
+              className="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-playfair)]"
+              style={{ display: 'none' }}
+            >
+              Sparta Limousine
             </h1>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection("fleet")} className="text-gray-200 hover:text-luxury-gold transition-colors">
+            <button onClick={() => scrollToSection("fleet")} className="text-gray-200 hover:text-luxury-platinum transition-colors">
               Fleet
             </button>
-            <button onClick={() => scrollToSection("services")} className="text-gray-200 hover:text-luxury-gold transition-colors">
+            <button onClick={() => scrollToSection("services")} className="text-gray-200 hover:text-luxury-platinum transition-colors">
               Services
             </button>
-            <button onClick={() => scrollToSection("booking")} className="text-gray-200 hover:text-luxury-gold transition-colors">
+            <button onClick={() => scrollToSection("booking")} className="text-gray-200 hover:text-luxury-platinum transition-colors">
               Book Now
             </button>
-            <a href="tel:+1234567890" className="flex items-center space-x-2 bg-luxury-gold text-black px-6 py-2 rounded-full hover:bg-luxury-darkGold transition-all">
+            <a href="tel:+18007295466" className="flex items-center space-x-2 bg-luxury-platinum text-black px-6 py-2 rounded-md hover:bg-luxury-silver transition-all">
               <Phone size={18} />
-              <span className="font-semibold">Call Us</span>
+              <span className="font-semibold">1-800-729-LIMO</span>
             </a>
           </div>
 
@@ -75,18 +91,18 @@ export default function Hero() {
             className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-gray-800 mt-4"
           >
             <div className="flex flex-col space-y-4 p-6">
-              <button onClick={() => scrollToSection("fleet")} className="text-left text-gray-200 hover:text-luxury-gold transition-colors">
+              <button onClick={() => scrollToSection("fleet")} className="text-left text-gray-200 hover:text-luxury-platinum transition-colors">
                 Fleet
               </button>
-              <button onClick={() => scrollToSection("services")} className="text-left text-gray-200 hover:text-luxury-gold transition-colors">
+              <button onClick={() => scrollToSection("services")} className="text-left text-gray-200 hover:text-luxury-platinum transition-colors">
                 Services
               </button>
-              <button onClick={() => scrollToSection("booking")} className="text-left text-gray-200 hover:text-luxury-gold transition-colors">
+              <button onClick={() => scrollToSection("booking")} className="text-left text-gray-200 hover:text-luxury-platinum transition-colors">
                 Book Now
               </button>
-              <a href="tel:+1234567890" className="flex items-center space-x-2 bg-luxury-gold text-black px-6 py-3 rounded-full hover:bg-luxury-darkGold transition-all w-full justify-center">
+              <a href="tel:+18007295466" className="flex items-center space-x-2 bg-luxury-platinum text-black px-6 py-3 rounded-md hover:bg-luxury-silver transition-all w-full justify-center">
                 <Phone size={18} />
-                <span className="font-semibold">Call Us</span>
+                <span className="font-semibold">1-800-729-LIMO</span>
               </a>
             </div>
           </motion.div>
@@ -102,28 +118,28 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <p className="text-luxury-gold text-sm lg:text-base font-semibold tracking-wider uppercase mb-4">
+              <p className="text-luxury-platinum text-sm lg:text-base font-semibold tracking-wider uppercase mb-4">
                 Premium Black Car Service
               </p>
               <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-[family-name:var(--font-playfair)]">
-                Luxury Transportation
+                Executive Transportation
                 <br />
-                <span className="text-luxury-gold">You Can Trust</span>
+                <span className="text-luxury-platinum">You Can Trust</span>
               </h2>
               <p className="text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed">
-                Experience professional chauffeur service in our immaculate Ford Flex and Lincoln MKT.
+                Experience professional chauffeur service in our premium fleet, featuring the luxurious Cadillac XT6, Ford Flex, and Lincoln MKT.
                 Perfect for airport transfers, corporate travel, and special occasions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => scrollToSection("booking")}
-                  className="bg-luxury-gold text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-luxury-darkGold transition-all transform hover:scale-105"
+                  className="bg-luxury-platinum text-black px-8 py-4 rounded-md text-lg font-semibold hover:bg-luxury-silver transition-all"
                 >
                   Book Your Ride
                 </button>
                 <button
                   onClick={() => scrollToSection("fleet")}
-                  className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all"
+                  className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-md text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all"
                 >
                   View Our Fleet
                 </button>
@@ -138,15 +154,15 @@ export default function Hero() {
               className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20"
             >
               <div>
-                <p className="text-3xl lg:text-4xl font-bold text-luxury-gold">24/7</p>
+                <p className="text-3xl lg:text-4xl font-bold text-luxury-platinum">24/7</p>
                 <p className="text-gray-400 mt-1">Available</p>
               </div>
               <div>
-                <p className="text-3xl lg:text-4xl font-bold text-luxury-gold">2</p>
-                <p className="text-gray-400 mt-1">Luxury Vehicles</p>
+                <p className="text-3xl lg:text-4xl font-bold text-luxury-platinum">3</p>
+                <p className="text-gray-400 mt-1">Premium Vehicles</p>
               </div>
               <div>
-                <p className="text-3xl lg:text-4xl font-bold text-luxury-gold">100%</p>
+                <p className="text-3xl lg:text-4xl font-bold text-luxury-platinum">100%</p>
                 <p className="text-gray-400 mt-1">Professional</p>
               </div>
             </motion.div>

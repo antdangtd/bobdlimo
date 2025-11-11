@@ -12,11 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         luxury: {
-          gold: "#D4AF37",
-          darkGold: "#B8941F",
-          cream: "#F5F5DC",
-          charcoal: "#1C1C1E",
-          slate: "#2C2C2E",
+          charcoal: "#1A1A1A",
+          darkCharcoal: "#2D2D2D",
+          mediumCharcoal: "#404040",
+          platinum: "#E8E8E8",
+          silver: "#C0C0C0",
+          darkSilver: "#A8A8A8",
         },
       },
       fontFamily: {

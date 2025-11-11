@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bob's Limousine Service | Luxury Black Car Transportation",
-  description: "Professional limousine and black car service featuring Ford Flex and Lincoln MKT. Airport transfers, corporate travel, and special events.",
-  keywords: "limousine service, black car service, luxury transportation, airport transfer, corporate travel",
+  title: "Sparta Limousine | Luxury Black Car Service in North Jersey",
+  description: "Family-owned limousine service serving North Jersey for over 50 years. Featuring premium Cadillac XT6, Ford Flex, and Lincoln MKT. Airport transfers, corporate travel, and special events.",
+  keywords: "limousine service, black car service, luxury transportation, airport transfer, corporate travel, Sparta NJ, North Jersey, Cadillac XT6",
+  icons: {
+    icon: "/sparta-logo.png",
+    shortcut: "/sparta-logo.png",
+    apple: "/sparta-logo.png",
+  },
 };
 
 export default function RootLayout({

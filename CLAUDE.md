@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A modern luxury black car service website for **Bob's Limousine Service** built with Next.js 15, TypeScript, and Tailwind CSS. Features online booking, AI chatbot, and admin dashboard for managing reservations.
+A modern luxury black car service website for **Sparta Limousine** built with Next.js 15, TypeScript, and Tailwind CSS. Features online booking, intelligent chatbot, and admin dashboard for managing reservations. Family-owned company serving North Jersey for over 50 years.
 
 ## Development Commands
 
@@ -158,7 +158,16 @@ luxury: {
 - Expandable/collapsible interface
 - Message history with user/bot distinction
 - Typing indicators during responses
-- Currently keyword-based (ready for LLM integration)
+- Intelligent keyword-based responses covering:
+  - Vehicle details and specifications (all 3 vehicles)
+  - Route-specific pricing (Newark, LaGuardia, JFK, NYC)
+  - Service areas and coverage
+  - All 5 airports with amenities
+  - Hourly service rates
+  - Corporate accounts and special events
+  - Contact information and booking options
+  - Company history and values
+- Ready for OpenAI/Claude API integration (see TODO comments)
 
 ### Admin Dashboard (app/admin/page.tsx)
 - Unprotected route (add authentication before production)
@@ -192,10 +201,49 @@ Protect `/admin` route with:
 
 ## Business Context
 
-Bob's Limousine Service operates Ford Flex and Lincoln MKT vehicles for:
-- Airport transfers (primary service)
-- Corporate travel and executive transportation
-- Special events and occasions
-- Wine tours and regional trips
+**Sparta Limousine** - Family-owned company serving North Jersey for over 50 years.
 
-When updating content, maintain the luxury aesthetic and professional tone while emphasizing reliability and comfort.
+**Contact Information:**
+- Phone: 1-800-729-LIMO (1-800-729-5466)
+- Email: info@sparta-limo.com
+- Address: 270 Sparta Avenue, Sparta, NJ 07871
+- Facebook: https://facebook.com/SpartaLimo
+
+**Fleet (3 Premium Vehicles):**
+1. **Cadillac XT6** (Flagship) - 6 passengers, premium leather, heated/cooled seats, Bose sound, panoramic sunroof
+2. **Ford Flex** - 6 passengers, spacious interior, climate control, Wi-Fi available
+3. **Lincoln MKT** - 3 passengers, massage seats, perfect for executives
+
+**Service Areas:**
+- New Jersey: Sussex County, Morris County, Bergen, Newark, Jersey City, Hoboken
+- New York: Orange County NY, NYC pickups
+- Pennsylvania: Northampton County
+
+**Airports Served:**
+- Newark (EWR)
+- JFK International
+- LaGuardia (LGA)
+- Teterboro
+- Westchester Airport
+
+**Services:**
+- Airport transfers (primary service) with flight tracking and meet & greet
+- Hourly service: $65/hour (4 hour minimum)
+- Corporate travel and executive transportation
+- Special events (weddings, proms, wine tours)
+- Hospital appointments and medical transport
+
+**Pricing Examples (from Sussex County):**
+- Newark (EWR): $165-180
+- LaGuardia: $250-275
+- JFK: $300
+- NYC Piers/Manhattan: $225-275
+
+**Branding:**
+- Logo: `/images/sparta-logo.png` (transparent PNG with no checkered background)
+- Logo displays in header navigation and footer
+- Text fallback: "Sparta Limousine" if logo doesn't load
+- Primary color: Luxury Gold (#D4AF37)
+- Theme: Dark, sophisticated, professional
+
+When updating content, maintain the luxury aesthetic and professional tone while emphasizing the 50+ years of family-owned service, reliability, and comfort.

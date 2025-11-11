@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, Car, Send } from "lucide-react";
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-export default function BookingForm() {
+function BookingFormContent() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,12 +31,19 @@ export default function BookingForm() {
     setErrorMessage("");
 
     try {
+      // Execute reCAPTCHA
+      if (!executeRecaptcha) {
+        throw new Error("reCAPTCHA not ready");
+      }
+
+      const recaptchaToken = await executeRecaptcha("booking_submit");
+
       const response = await fetch("/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
       const data = await response.json();
@@ -78,7 +87,7 @@ export default function BookingForm() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-luxury-gold text-sm font-semibold tracking-wider uppercase mb-4">
+          <p className="text-luxury-platinum text-sm font-semibold tracking-wider uppercase mb-4">
             Reserve Your Ride
           </p>
           <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
@@ -109,7 +118,7 @@ export default function BookingForm() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                   placeholder="John Doe"
                 />
               </div>
@@ -124,7 +133,7 @@ export default function BookingForm() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                   placeholder="john@example.com"
                 />
               </div>
@@ -139,7 +148,7 @@ export default function BookingForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                   placeholder="(555) 123-4567"
                 />
               </div>
@@ -159,7 +168,7 @@ export default function BookingForm() {
                   value={formData.pickup}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                   placeholder="Enter pickup address"
                 />
               </div>
@@ -175,7 +184,7 @@ export default function BookingForm() {
                   value={formData.dropoff}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                   placeholder="Enter dropoff address"
                 />
               </div>
@@ -195,7 +204,7 @@ export default function BookingForm() {
                   value={formData.date}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                 />
               </div>
               <div>
@@ -209,7 +218,7 @@ export default function BookingForm() {
                   value={formData.time}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                 />
               </div>
               <div>
@@ -222,7 +231,7 @@ export default function BookingForm() {
                   name="passengers"
                   value={formData.passengers}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                 >
                   {[1, 2, 3, 4, 5, 6].map((num) => (
                     <option key={num} value={num}>
@@ -241,9 +250,10 @@ export default function BookingForm() {
                   name="vehicle"
                   value={formData.vehicle}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent"
+                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
                 >
                   <option value="">Any</option>
+                  <option value="cadillac-xt6">Cadillac XT6</option>
                   <option value="ford-flex">Ford Flex</option>
                   <option value="lincoln-mkt">Lincoln MKT</option>
                 </select>
@@ -261,7 +271,7 @@ export default function BookingForm() {
                 value={formData.specialRequests}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-transparent resize-none"
+                className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent resize-none"
                 placeholder="Let us know if you have any special requirements..."
               />
             </div>
@@ -270,7 +280,7 @@ export default function BookingForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-luxury-gold text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-luxury-darkGold transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full bg-luxury-platinum text-black px-8 py-4 rounded-md text-lg font-semibold hover:bg-luxury-silver transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
             >
               <span>{isSubmitting ? "Submitting..." : "Request Reservation"}</span>
               <Send size={20} />
@@ -313,12 +323,27 @@ export default function BookingForm() {
         >
           <p>
             Prefer to call? Reach us at{" "}
-            <a href="tel:+1234567890" className="text-luxury-gold hover:underline font-semibold">
-              (123) 456-7890
+            <a href="tel:+18007295466" className="text-luxury-platinum hover:underline font-semibold">
+              1-800-729-LIMO
             </a>
           </p>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+export default function BookingForm() {
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  if (!siteKey) {
+    console.error("reCAPTCHA site key is missing");
+    return <BookingFormContent />;
+  }
+
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
+      <BookingFormContent />
+    </GoogleReCaptchaProvider>
   );
 }
