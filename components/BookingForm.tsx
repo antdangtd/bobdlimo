@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, Car, Send } from "lucide-react";
+import { Calendar, MapPin, Users, Send } from "lucide-react";
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 function BookingFormContent() {
@@ -16,7 +16,6 @@ function BookingFormContent() {
     date: "",
     time: "",
     passengers: "1",
-    vehicle: "",
     specialRequests: "",
   });
 
@@ -61,7 +60,6 @@ function BookingFormContent() {
           date: "",
           time: "",
           passengers: "1",
-          vehicle: "",
           specialRequests: "",
         });
       } else {
@@ -191,7 +189,7 @@ function BookingFormContent() {
             </div>
 
             {/* Date, Time, Passengers */}
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <div>
                 <label htmlFor="date" className="block text-sm font-semibold text-gray-300 mb-2">
                   <Calendar className="inline mr-2" size={16} />
@@ -238,24 +236,6 @@ function BookingFormContent() {
                       {num}
                     </option>
                   ))}
-                </select>
-              </div>
-              <div>
-                <label htmlFor="vehicle" className="block text-sm font-semibold text-gray-300 mb-2">
-                  <Car className="inline mr-2" size={16} />
-                  Vehicle
-                </label>
-                <select
-                  id="vehicle"
-                  name="vehicle"
-                  value={formData.vehicle}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-luxury-platinum focus:border-transparent"
-                >
-                  <option value="">Any</option>
-                  <option value="cadillac-xt6">Cadillac XT6</option>
-                  <option value="ford-flex">Ford Flex</option>
-                  <option value="lincoln-mkt">Lincoln MKT</option>
                 </select>
               </div>
             </div>

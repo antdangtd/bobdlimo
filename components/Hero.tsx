@@ -34,33 +34,29 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
           >
             <img
               src="/images/sparta-logo.png"
               alt="Sparta Limousine"
-              className="h-20 lg:h-28 w-auto"
-              onError={(e) => {
-                // Fallback to text if image doesn't load
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const textFallback = document.getElementById('logo-text-fallback');
-                if (textFallback) textFallback.style.display = 'block';
-              }}
+              className="h-16 lg:h-28 w-auto"
             />
-            <h1
-              id="logo-text-fallback"
-              className="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-playfair)]"
-              style={{ display: 'none' }}
-            >
-              Sparta Limousine
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">
+                <span className="bg-gradient-to-r from-luxury-platinum via-luxury-gold to-luxury-platinum bg-clip-text text-transparent font-[family-name:var(--font-playfair)]">
+                  SPARTA
+                </span>
+              </h1>
+              <p className="text-sm md:text-base lg:text-lg font-light tracking-[0.3em] text-luxury-platinum/90 -mt-1">
+                LIMOUSINE
+              </p>
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <button onClick={() => scrollToSection("fleet")} className="text-gray-200 hover:text-luxury-platinum transition-colors">
-              Fleet
+              Service Areas
             </button>
             <button onClick={() => scrollToSection("services")} className="text-gray-200 hover:text-luxury-platinum transition-colors">
               Services
@@ -88,11 +84,11 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-t border-gray-800 mt-4"
+            className="md:hidden absolute top-full left-0 right-0 bg-black backdrop-blur-lg border-t border-luxury-platinum shadow-2xl z-50"
           >
             <div className="flex flex-col space-y-4 p-6">
               <button onClick={() => scrollToSection("fleet")} className="text-left text-gray-200 hover:text-luxury-platinum transition-colors">
-                Fleet
+                Service Areas
               </button>
               <button onClick={() => scrollToSection("services")} className="text-left text-gray-200 hover:text-luxury-platinum transition-colors">
                 Services
@@ -119,16 +115,16 @@ export default function Hero() {
               transition={{ delay: 0.2 }}
             >
               <p className="text-luxury-platinum text-sm lg:text-base font-semibold tracking-wider uppercase mb-4">
-                Premium Black Car Service
+                Luxury Transportation Service
               </p>
               <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight font-[family-name:var(--font-playfair)]">
-                Executive Transportation
+                Premium Rides
                 <br />
-                <span className="text-luxury-platinum">You Can Trust</span>
+                <span className="text-luxury-platinum">For Every Occasion</span>
               </h2>
               <p className="text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed">
-                Experience professional chauffeur service in our premium fleet, featuring the luxurious Cadillac XT6, Ford Flex, and Lincoln MKT.
-                Perfect for airport transfers, corporate travel, and special occasions.
+                Professional chauffeur service for all your transportation needs. Airport transfers, weddings, proms,
+                corporate travel, special events, and night outs. Serving North Jersey for over 50 years.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
@@ -141,7 +137,7 @@ export default function Hero() {
                   onClick={() => scrollToSection("fleet")}
                   className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-md text-lg font-semibold border border-white/20 hover:bg-white/20 transition-all"
                 >
-                  View Our Fleet
+                  View Service Areas
                 </button>
               </div>
             </motion.div>
