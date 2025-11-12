@@ -98,7 +98,7 @@ export default function Services() {
                 className="group bg-black border border-gray-800 rounded-lg overflow-hidden hover:border-luxury-platinum/50 transition-all duration-300 relative"
               >
                 {/* Service Image Header */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-32 md:h-48 overflow-hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                     style={{ backgroundImage: `url('${service.image}')` }}
@@ -113,19 +113,19 @@ export default function Services() {
                     </div>
                   )}
 
-                  <div className="absolute bottom-4 left-4 flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-luxury-platinum rounded-full flex items-center justify-center">
-                      <Icon className="text-black" size={24} />
+                  <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 flex items-center space-x-2 md:space-x-3">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-luxury-platinum rounded-full flex items-center justify-center">
+                      <Icon className="text-black" size={20} />
                     </div>
-                    <h3 className="text-2xl font-bold text-white font-[family-name:var(--font-playfair)]">
+                    <h3 className="text-lg md:text-2xl font-bold text-white font-[family-name:var(--font-playfair)]">
                       {service.title}
                     </h3>
                   </div>
                 </div>
 
                 {/* Service Content */}
-                <div className="p-6">
-                  <p className="text-gray-400 mb-4 leading-relaxed text-sm">{service.description}</p>
+                <div className="p-4 md:p-6">
+                  <p className="text-gray-400 mb-3 md:mb-4 leading-relaxed text-sm">{service.description}</p>
                   <ul className="space-y-2">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center space-x-2 text-sm text-gray-500">

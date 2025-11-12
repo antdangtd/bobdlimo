@@ -136,18 +136,18 @@ export default function Fleet() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 hover:border-luxury-platinum/50 transition-all duration-300"
+                className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-4 md:p-8 hover:border-luxury-platinum/50 transition-all duration-300"
               >
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-12 h-12 bg-luxury-platinum/10 rounded-full flex items-center justify-center">
-                    <Icon className="text-luxury-platinum" size={24} />
+                <div className="flex items-center space-x-2 md:space-x-3 mb-4 md:mb-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-luxury-platinum/10 rounded-full flex items-center justify-center">
+                    <Icon className="text-luxury-platinum" size={20} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white font-[family-name:var(--font-playfair)]">
+                  <h3 className="text-xl md:text-2xl font-bold text-white font-[family-name:var(--font-playfair)]">
                     {area.region}
                   </h3>
                 </div>
 
-                <p className="text-gray-400 mb-6">{area.description}</p>
+                <p className="text-gray-400 mb-4 md:mb-6 text-sm md:text-base">{area.description}</p>
 
                 <div className="space-y-2">
                   {area.coverage.map((location) => (
@@ -220,7 +220,7 @@ export default function Fleet() {
                 className="group relative bg-black rounded-lg overflow-hidden border border-gray-800 hover:border-luxury-platinum/50 transition-all duration-300"
               >
                 {/* Airport Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-32 md:h-48 overflow-hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                     style={{ backgroundImage: `url('${airport.image}')` }}
@@ -233,16 +233,16 @@ export default function Fleet() {
                       </span>
                     </div>
                   )}
-                  <div className="absolute bottom-4 left-4">
-                    <p className="text-5xl font-bold text-luxury-platinum font-[family-name:var(--font-playfair)]">
+                  <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4">
+                    <p className="text-3xl md:text-5xl font-bold text-luxury-platinum font-[family-name:var(--font-playfair)]">
                       {airport.code}
                     </p>
                   </div>
                 </div>
 
                 {/* Airport Info */}
-                <div className="p-6">
-                  <h4 className="text-xl font-bold text-white mb-2">{airport.name}</h4>
+                <div className="p-4 md:p-6">
+                  <h4 className="text-lg md:text-xl font-bold text-white mb-2">{airport.name}</h4>
                   <div className="flex items-center space-x-2 text-gray-400">
                     <Clock size={16} />
                     <p className="text-sm">{airport.time}</p>

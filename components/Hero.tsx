@@ -29,7 +29,7 @@ export default function Hero() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-10 px-4 py-6 lg:px-8">
+      <nav className="relative z-50 px-4 py-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -84,7 +84,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-black backdrop-blur-lg border-t border-luxury-platinum shadow-2xl z-50"
+            className="md:hidden absolute top-full left-0 right-0 bg-black backdrop-blur-lg border-t border-luxury-platinum shadow-2xl z-[100]"
           >
             <div className="flex flex-col space-y-4 p-6">
               <button onClick={() => scrollToSection("fleet")} className="text-left text-gray-200 hover:text-luxury-platinum transition-colors">
@@ -106,7 +106,7 @@ export default function Hero() {
       </nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex-1 flex items-center px-4 lg:px-8 pb-20">
+      <div className="relative z-0 flex-1 flex items-center px-4 lg:px-8 pb-20">
         <div className="max-w-7xl mx-auto w-full">
           <div className="max-w-3xl">
             <motion.div
@@ -167,7 +167,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="relative z-10 pb-8 flex justify-center">
+      <div className="relative z-0 pb-8 flex justify-center">
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
