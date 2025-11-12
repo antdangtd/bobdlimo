@@ -30,13 +30,17 @@ const bookingsFile = path.join(dataDir, "bookings.json");
 const apiInstance = new brevo.TransactionalEmailsApi();
 apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || "");
 
-// Ensure data directory and file exist
+// Ensure data directory and file exist (only works in local development)
 function ensureDataFile() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if (!fs.existsSync(bookingsFile)) {
-    fs.writeFileSync(bookingsFile, JSON.stringify([], null, 2));
+  try {
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    if (!fs.existsSync(bookingsFile)) {
+      fs.writeFileSync(bookingsFile, JSON.stringify([], null, 2));
+    }
+  } catch (error) {
+    // Filesystem not available (expected in production)
   }
 }
 
@@ -227,10 +231,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Read existing bookings
-    const data = fs.readFileSync(bookingsFile, "utf-8");
-    const bookings = JSON.parse(data);
-
     // Create new booking (without recaptchaToken)
     const newBooking = {
       id: Date.now().toString(),
@@ -239,11 +239,17 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    // Add to bookings
-    bookings.push(newBooking);
-
-    // Save to file
-    fs.writeFileSync(bookingsFile, JSON.stringify(bookings, null, 2));
+    // Try to save to file (optional - will fail on Vercel's read-only filesystem)
+    try {
+      const data = fs.readFileSync(bookingsFile, "utf-8");
+      const bookings = JSON.parse(data);
+      bookings.push(newBooking);
+      fs.writeFileSync(bookingsFile, JSON.stringify(bookings, null, 2));
+    } catch (fileError) {
+      // File operations not supported in production environment
+      // This is expected on Vercel - bookings will only be sent via email
+      console.log("Note: File storage not available in production environment");
+    }
 
     // Send email notification
     try {
