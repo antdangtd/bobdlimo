@@ -36,6 +36,7 @@ function BookingFormContent() {
       }
 
       const recaptchaToken = await executeRecaptcha("booking_submit");
+      console.log("reCAPTCHA token generated:", recaptchaToken ? "✓" : "✗");
 
       const response = await fetch("/api/bookings", {
         method: "POST",
@@ -45,7 +46,9 @@ function BookingFormContent() {
         body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
+      console.log("Response status:", response.status);
       const data = await response.json();
+      console.log("Response data:", data);
 
       if (data.success) {
         setIsSubmitting(false);

@@ -186,6 +186,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     });
 
     const data = await response.json();
+    console.log("reCAPTCHA verification:", data);
 
     // For v3, check if score is above threshold (0.5 is recommended)
     return data.success && data.score >= 0.5;
